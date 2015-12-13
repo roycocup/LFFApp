@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Schedule"
-        android:id="@+id/txt_schedule"
+        android:id="@+id/title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,17 +24,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/sp_weekday"
         android:spinnerMode="dropdown"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_below="@+id/txt_schedule"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
 
-    <Spinner
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sp_room"
+        android:text="New Text"
+        android:id="@+id/"
         android:layout_below="@+id/sp_weekday"
         android:layout_centerHorizontal="true"
-        android:spinnerMode="dropdown" />
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#aeaeae"
+        android:textSize="30dp" />
 
 </RelativeLayout>

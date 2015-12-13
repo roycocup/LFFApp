@@ -16,18 +16,20 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
 
     Spinner weekdaysSpinner, roomSpinner;
     String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    String[] rooms = {"Room 1", "Room 2"};
+    HashMap<String, String[]> schedule = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        setupSpinners();
+//        schedule.put("monday", {"7:15", {"bjj", "boxing"}});
+
+        setupSpinner();
     }
 
-    void setupSpinners(){
-
+    void setupSpinner(){
         // weekdays spinner
         ArrayAdapter<String> a1 = new ArrayAdapter<String>(ScheduleActivity.this, android.R.layout.simple_spinner_item , weekDays);
         weekdaysSpinner = (Spinner) findViewById(R.id.sp_weekday);
@@ -36,26 +38,15 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         weekdaysSpinner.setSelection(Calendar.DAY_OF_WEEK - 1);
         weekdaysSpinner.setOnItemSelectedListener(this);
 
-        // rooms spinner
-        ArrayAdapter<String> a2 = new ArrayAdapter<String>(ScheduleActivity.this, android.R.layout.simple_spinner_item , rooms);
-        roomSpinner = (Spinner) findViewById(R.id.sp_room);
-        roomSpinner.setAdapter(a2);
-        roomSpinner.setOnItemSelectedListener(this);
     }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-        //This is how you would know them apart
-        //if (parent.getId() == R.id.schedule_btn)
-        showSchedule(weekdaysSpinner.getSelectedItemPosition(), roomSpinner.getSelectedItemPosition());
 
 
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
 
-    private void showSchedule(int weekDay, int room){
-        Log.w(TAG, weekDay+" "+room);
-    }
+
 
 }
