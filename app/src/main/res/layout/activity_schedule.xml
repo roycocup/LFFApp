@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/"
+        android:id="@+id/txt_schedule"
         android:layout_below="@+id/sp_weekday"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"

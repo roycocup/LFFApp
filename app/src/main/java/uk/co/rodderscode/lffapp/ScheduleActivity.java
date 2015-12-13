@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.*;
 
 
@@ -14,17 +16,15 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
 
     private static final String TAG = "Rodderscode";
 
-    Spinner weekdaysSpinner, roomSpinner;
+    Spinner weekdaysSpinner;
     String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    HashMap<String, String[]> schedule = new HashMap<>();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
-//        schedule.put("monday", {"7:15", {"bjj", "boxing"}});
 
         setupSpinner();
     }
@@ -41,11 +41,12 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-
-
+        TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
+        String weekDay = weekDays[position];
+        txt_schedule.setText("Looking at: "+weekDay);
     }
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {}
+    public void onNothingSelected(AdapterView<?> parent){}
 
 
 
