@@ -22,12 +22,19 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sp_schedule"
+        android:id="@+id/sp_weekday"
         android:spinnerMode="dropdown"
-        android:layout_below="@+id/txt_schedule"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp" />
+        android:layout_marginRight="0dp"
+        android:layout_below="@+id/txt_schedule"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_room"
+        android:layout_below="@+id/sp_weekday"
+        android:layout_centerHorizontal="true"
+        android:spinnerMode="dropdown" />
 
 </RelativeLayout>
