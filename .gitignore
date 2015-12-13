@@ -5,9 +5,4 @@
 .DS_Store
 /build
 /captures
-.gradle
-local.*
-settings.*
-i.idea
-LFFApp.iml
 
