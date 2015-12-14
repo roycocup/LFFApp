@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<classes xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <time>7:15</time>
+        <discipline>BJJ</discipline>
+        <room>1</room>
+    </item>
+    <item>
+        <time>12:30</time>
+        <discipline>BJJ</discipline>
+        <room>1</room>
+    </item>
+</classes>

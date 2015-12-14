@@ -13,6 +13,8 @@ import java.util.Arrays;
 
 public class MainActivity extends ActionBarActivity {
 
+    public static final String TAG = "Rodderscode";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

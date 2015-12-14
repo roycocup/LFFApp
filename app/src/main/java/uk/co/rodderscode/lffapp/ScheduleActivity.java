@@ -14,10 +14,9 @@ import java.util.*;
 
 public class ScheduleActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
 
-    private static final String TAG = "Rodderscode";
 
     Spinner weekdaysSpinner;
-    //String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
     //TODO: Thinkimg of a good way to hold the whole schedule here.
     HashMap<String, String[]> schedule = new HashMap<>();
@@ -28,6 +27,7 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         setContentView(R.layout.activity_schedule);
 
         setupSpinner();
+        Schedule s = new Schedule(this);
     }
 
     void setupSpinner(){
@@ -35,18 +35,19 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         ArrayAdapter<String> a1 = new ArrayAdapter<String>(
                 ScheduleActivity.this,
                 android.R.layout.simple_spinner_item,
-                Schedule.weekDays);
+                weekDays);
         weekdaysSpinner = (Spinner) findViewById(R.id.sp_weekday);
         weekdaysSpinner.setAdapter(a1);
         //default the selection to today
-        weekdaysSpinner.setSelection(Calendar.DAY_OF_WEEK - 1);
+        Calendar c = Calendar.getInstance();
+        weekdaysSpinner.setSelection(c.get(Calendar.DAY_OF_WEEK) - 2);
         weekdaysSpinner.setOnItemSelectedListener(this);
 
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
         TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
-        String weekDay = Schedule.weekDays[position];
+        String weekDay = weekDays[position];
         txt_schedule.setText("Looking at: " + weekDay);
     }
     @Override
