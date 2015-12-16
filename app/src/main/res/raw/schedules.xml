@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-    <item>
-        <time>7:15</time>
-        <discipline>BJJ</discipline>
-        <room>1</room>
-    </item>
-    <item>
-        <time>12:30</time>
-        <discipline>BJJ</discipline>
-        <room>1</room>
-    </item>
+    <item dow="monday" time="7:15" discipline="bjj" room="1"></item>
+    <item dow="monday" time="12:30" discipline="bjj" room="1"></item>
+    <item dow="wednesday" time="7:15" discipline="bjj" room="1"></item>
 </root>

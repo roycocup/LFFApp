@@ -1,50 +1,55 @@
 package uk.co.rodderscode.lffapp;
 
-
-import android.content.res.AssetManager;
 import android.util.Log;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xmlpull.v1.XmlPullParser;
-
-
 import android.content.Context;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 
 public class Schedule {
 
-    public XmlPullParser parser;
-    public DocumentBuilderFactory dbf  = DocumentBuilderFactory.newInstance();
-    public DocumentBuilder db;
-    public Document d;
     public XPath xp = XPathFactory.newInstance().newXPath();;
-    public NodeList nl;
+    public InputSource is;
     public Context context;
+    public NodeList nodeList;
 
     public Schedule(Context context){
         this.context = context;
-        load();
+        is = new InputSource(context.getResources().openRawResource(R.raw.schedules));
+        nodeList = search("/root/item");
+    }
+
+    // get an ordered list of classes by week day
+    public List getDayClasses(String dow){
+        List l = new ArrayList();
+        for(int i = 0; i < nodeList.getLength(); i++) {
+            NamedNodeMap node = nodeList.item(i).getAttributes();
+            if (node.item(i).getNodeName().equals("dow") & node.item(i).getNodeValue().equals(dow)) {
+                l.add(node.item(i));
+            }
+        }
+        return l;
     }
 
 
-    public void load() {
-        try{
-            InputSource is = new InputSource(context.getResources().openRawResource(R.raw.schedules));
-            NodeList nodes = (NodeList) xp.evaluate("/root/item", is, XPathConstants.NODESET);
-            for(int i = 0; i < nodes.getLength(); i++)
-                Log.d(MainActivity.TAG, nodes.item(i).getNodeName());
-        } catch (Exception e) {
-            Log.e(MainActivity.TAG, e.getMessage());
+    private NodeList search(String expression) {
+        NodeList nodes = null;
+        try {
+            nodes = (NodeList) xp.evaluate(expression, is, XPathConstants.NODESET);
+        } catch (XPathExpressionException e) {
+            Log.w(MainActivity.TAG, e.getMessage());
         }
+        return nodes;
     }
 
 

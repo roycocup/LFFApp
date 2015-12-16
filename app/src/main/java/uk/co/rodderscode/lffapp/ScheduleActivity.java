@@ -17,17 +17,14 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
 
     Spinner weekdaysSpinner;
     String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-
-    //TODO: Thinkimg of a good way to hold the whole schedule here.
-    HashMap<String, String[]> schedule = new HashMap<>();
+    Schedule schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
         setupSpinner();
-        Schedule s = new Schedule(this);
+        schedule = new Schedule(this);
     }
 
     void setupSpinner(){
@@ -48,6 +45,7 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
         TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
         String weekDay = weekDays[position];
+        schedule.getDayClasses(weekDay.toLowerCase());
         txt_schedule.setText("Looking at: " + weekDay);
     }
     @Override
