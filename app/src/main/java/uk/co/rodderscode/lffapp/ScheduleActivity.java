@@ -48,30 +48,19 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
         TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
         String weekDay = weekDays[position];
-        HashMap<Integer, String[]> daySchedule = schedule.getDayClasses(weekDay.toLowerCase());
+        List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
         txt_schedule.setText("Looking at: " + weekDay + "\n");
 
-        if (daySchedule.size() < 1){
+        if (day.size() < 1){
             txt_schedule.append("There are no classes today. \n");
             return;
         }
 
-        Iterator it = daySchedule.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            Log.d(MainActivity.TAG, pair.getKey() + " = " + pair.getValue());
-            it.remove(); // avoids a ConcurrentModificationException
+        for (int i = 0; i < day.size(); i++) {
+//            Log.d(MainActivity.TAG, day.get(i)[0].toString());
+            txt_schedule.append("Time: " + day.get(i)[0] + " Class: " + day.get(i)[1] + "\n");
         }
 
-        /*
-        for (int i = 0; i < daySchedule.size(); i++) {
-            Log.w(MainActivity.TAG, daySchedule.get(i).get);
-            String time = n.getNamedItem("time").getNodeValue().toString();
-            String discipline = n.getNamedItem("discipline").getNodeValue().toString();
-            txt_schedule.append("Time: " + time + " Class: " + discipline + "\n");
-
-        }
-        */
 
     }
     @Override

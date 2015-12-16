@@ -32,18 +32,21 @@ public class Schedule {
     }
 
     // get an ordered list of classes by week day
-    public HashMap getDayClasses(String dow){
-//        List l = new ArrayList();
-        HashMap<Integer, String[]> hm = new HashMap<>();
+    public List<String[]> getDayClasses(String dow){
+        List<String[]> l = new ArrayList();
         for(int i = 0; i < nodeList.getLength(); i++) {
             NamedNodeMap nodeMap = nodeList.item(i).getAttributes();
             //if the node attribute dow is whatever we ask for...
+
             if (nodeMap.getNamedItem("dow").getNodeValue().equals(dow)) {
-                String[]  data = {nodeMap.getNamedItem("time").getNodeValue().toString(),nodeMap.getNamedItem("discipline").getNodeValue().toString()};
-                hm.put(i, data);
+                String[] r = new String[2];
+                r[0] = nodeMap.getNamedItem("time").getNodeValue().toString();
+                r[1] = nodeMap.getNamedItem("discipline").getNodeValue().toString();
+                l.add(r);
             }
         }
-        return hm;
+
+        return l;
     }
 
 
