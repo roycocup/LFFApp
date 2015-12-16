@@ -47,18 +47,23 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
         TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
+        TextView txt_schedule_content = (TextView) findViewById(R.id.txt_schedule_content);
         String weekDay = weekDays[position];
         List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
+
+        txt_schedule.append("");
+        txt_schedule_content.setText("");
+
         txt_schedule.setText("Looking at: " + weekDay + "\n");
 
         if (day.size() < 1){
             txt_schedule.append("There are no classes today. \n");
+            txt_schedule_content.setText("");
             return;
         }
 
         for (int i = 0; i < day.size(); i++) {
-//            Log.d(MainActivity.TAG, day.get(i)[0].toString());
-            txt_schedule.append("Time: " + day.get(i)[0] + " Class: " + day.get(i)[1] + "\n");
+            txt_schedule_content.append("Time: " + day.get(i)[0] + " Class: " + day.get(i)[1] + "\n");
         }
 
 

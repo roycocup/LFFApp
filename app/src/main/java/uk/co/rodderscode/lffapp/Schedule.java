@@ -37,7 +37,6 @@ public class Schedule {
         for(int i = 0; i < nodeList.getLength(); i++) {
             NamedNodeMap nodeMap = nodeList.item(i).getAttributes();
             //if the node attribute dow is whatever we ask for...
-
             if (nodeMap.getNamedItem("dow").getNodeValue().equals(dow)) {
                 String[] r = new String[2];
                 r[0] = nodeMap.getNamedItem("time").getNodeValue().toString();

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-    <item dow="monday" time="7:15" discipline="bjj" room="1"></item>
-    <item dow="monday" time="12:30" discipline="bjj" room="1"></item>
-    <item dow="wednesday" time="7:15" discipline="bjj" room="1"></item>
+    <item dow="monday" time="7:15" discipline="BJJ"></item>
+    <item dow="monday" time="12:30" discipline="Boxing"></item>
+    <item dow="monday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
+    <item dow="monday" time="18:30" discipline="BJJ Beginners"></item>
+    <item dow="monday" time="19:15" discipline="Muay Thai Beginners / Intermediate"></item>
+    <item dow="monday" time="20:00" discipline="BJJ"></item>
+    <item dow="monday" time="20:15" discipline="MMA Mixed"></item>
+
+    <item dow="tuesday" time="7:15" discipline="MMA Mixed"></item>
+    <item dow="tuesday" time="12:30" discipline="BJJ"></item>
+    <item dow="tuesday" time="18:30" discipline="BJJ Beginners"></item>
+    <item dow="tuesday" time="18:30" discipline="Muay Thai Advanced"></item>
+    <item dow="tuesday" time="19:30" discipline="BJJ Beginners"></item>
+    <item dow="tuesday" time="20:00" discipline="Boxing"></item>
+    <item dow="tuesday" time="20:30" discipline="BJJ"></item>
+
 </root>

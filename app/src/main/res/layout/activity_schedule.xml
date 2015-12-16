@@ -26,7 +26,7 @@
         android:spinnerMode="dropdown"
         android:layout_below="@+id/title"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="50dp" />
 
 
     <TextView
@@ -39,5 +39,22 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#aeaeae"
         android:textSize="30dp" />
+
+    <FrameLayout
+        android:layout_width="600dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txt_schedule"
+        android:layout_marginTop="20dp"
+        android:layout_alignEnd="@+id/sp_weekday">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/txt_schedule_content"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="20dp" />
+    </FrameLayout>
 
 </RelativeLayout>
