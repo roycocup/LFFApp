@@ -14,7 +14,23 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="News"
-        android:id="@+id/txt_news"
+        android:id="@+id/news_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txt_news"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/txt_news" />
+    </TableRow>
 </RelativeLayout>
+
