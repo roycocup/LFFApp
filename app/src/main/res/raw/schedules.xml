@@ -16,4 +16,36 @@
     <item dow="tuesday" time="20:00" discipline="Boxing"></item>
     <item dow="tuesday" time="20:30" discipline="BJJ"></item>
 
+    <item dow="wednesday" time="7:15" discipline="BJJ"></item>
+    <item dow="wednesday" time="12:30" discipline="Boxing"></item>
+    <item dow="wednesday" time="12:30" discipline="BJJ"></item>
+    <item dow="wednesday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
+    <item dow="wednesday" time="18:30" discipline="BJJ No-Gi"></item>
+    <item dow="wednesday" time="19:15" discipline="Muay Thai Beginners / Intermediate"></item>
+    <item dow="wednesday" time="20:00" discipline="BJJ"></item>
+    <item dow="wednesday" time="20:15" discipline="MMA Mixed"></item>
+
+    <item dow="thursday" time="7:15" discipline="MMA Mixed"></item>
+    <item dow="thursday" time="12:30" discipline="BJJ"></item>
+    <item dow="thursday" time="18:30" discipline="BJJ Beginners"></item>
+    <item dow="thursday" time="18:30" discipline="Muay Thai Advanced / Sparring"></item>
+    <item dow="thursday" time="19:30" discipline="MMA Mixed"></item>
+    <item dow="thursday" time="20:30" discipline="Wrestling"></item>
+
+    <item dow="friday" time="7:15" discipline="BJJ"></item>
+    <item dow="friday" time="12:30" discipline="BJJ Open Mat"></item>
+    <item dow="friday" time="18:00" discipline="BJJ Beginners"></item>
+    <item dow="friday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
+    <item dow="friday" time="19:00" discipline="BJJ"></item>
+    <item dow="friday" time="19:15" discipline="Sambo for MMA"></item>
+
+    <item dow="saturday" time="10:30" discipline="Pro MMA"></item>
+    <item dow="saturday" time="11:30" discipline="Strenght and Conditioning"></item>
+    <item dow="saturday" time="11:30" discipline="MMA Intermediate / Advanced"></item>
+    <item dow="saturday" time="12:30" discipline="Wrestling"></item>
+    <item dow="saturday" time="12:30" discipline="Muay Thai Mixed"></item>
+    <item dow="saturday" time="14:00" discipline="BJJ"></item>
+    <item dow="saturday" time="14:00" discipline="Boxing"></item>
+
+
 </root>
