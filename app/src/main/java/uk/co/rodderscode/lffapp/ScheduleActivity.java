@@ -36,7 +36,7 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
 
         ListView listView = (ListView) findViewById(R.id.schedule_list_view);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, day);
+        ScheduleAdapter adapter = new ScheduleAdapter(this, -1, day);
         listView.setAdapter(adapter);
 
     }
