@@ -2,15 +2,12 @@ package uk.co.rodderscode.lffapp;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
 import java.util.*;
 
@@ -20,15 +17,26 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
 
     Spinner weekdaysSpinner;
     String[] weekDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    Schedule schedule;
+    ScheduleModel schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
         setupSpinner();
-        schedule = new Schedule(this);
+        schedule = new ScheduleModel(this);
+
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
+                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
+                "Android", "iPhone", "WindowsMobile" };
+
+        fillListView(values);
+
     }
+
+
 
     void setupSpinner(){
         // weekdays spinner
@@ -51,6 +59,8 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         String weekDay = weekDays[position];
         List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
 
+
+
         txt_schedule.append("");
         txt_schedule_content.setText("");
 
@@ -66,8 +76,20 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
             txt_schedule_content.append("Time: " + day.get(i)[0] + " Class: " + day.get(i)[1] + "\n");
         }
 
-
     }
+
+    private void fillListView(String[] values) {
+
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; ++i) {
+            list.add(values[i]);
+        }
+
+        ListView listView = (listView) R.id.schedule_list_view;
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+    }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent){}
 

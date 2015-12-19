@@ -42,27 +42,23 @@
         android:backgroundTint="#aeaeae"
         android:textSize="30dp" />
 
-    <FrameLayout
-        android:layout_width="600dp"
-        android:layout_height="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/txt_schedule_content"
         android:layout_below="@+id/txt_schedule"
         android:layout_marginTop="20dp"
-        android:layout_alignEnd="@+id/sp_weekday">
+        android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/txt_schedule_content"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="20dp" />
 
-        <!--<ListView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/txt_schedule_content"-->
-            <!--android:layout_gravity="center_horizontal|bottom" />-->
-    </FrameLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/schedule_list_view"
+        android:layout_below="@id/txt_schedule_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal|bottom" />
 
 </RelativeLayout>
