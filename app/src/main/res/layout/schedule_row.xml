@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="time"
         android:id="@+id/sch_row_time"
-        android:paddingRight="20dp"
+        android:textSize="40dp"
         />
 
     <TextView
@@ -17,6 +17,9 @@
         android:layout_height="wrap_content"
         android:text="discipline"
         android:id="@+id/sch_row_discipline"
+        android:paddingLeft="20dp"
+        android:paddingBottom="30dp"
+        android:textSize="20dp"
         />
 
 </LinearLayout>

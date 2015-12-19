@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-    <item dow="monday" time="7:15" discipline="BJJ"></item>
+    <item dow="monday" time="07:15" discipline="BJJ"></item>
     <item dow="monday" time="12:30" discipline="Boxing"></item>
     <item dow="monday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
     <item dow="monday" time="18:30" discipline="BJJ Beginners"></item>
@@ -8,7 +8,7 @@
     <item dow="monday" time="20:00" discipline="BJJ"></item>
     <item dow="monday" time="20:15" discipline="MMA Mixed"></item>
 
-    <item dow="tuesday" time="7:15" discipline="MMA Mixed"></item>
+    <item dow="tuesday" time="07:15" discipline="MMA Mixed"></item>
     <item dow="tuesday" time="12:30" discipline="BJJ"></item>
     <item dow="tuesday" time="18:30" discipline="BJJ Beginners"></item>
     <item dow="tuesday" time="18:30" discipline="Muay Thai Advanced"></item>
@@ -16,7 +16,7 @@
     <item dow="tuesday" time="20:00" discipline="Boxing"></item>
     <item dow="tuesday" time="20:30" discipline="BJJ"></item>
 
-    <item dow="wednesday" time="7:15" discipline="BJJ"></item>
+    <item dow="wednesday" time="07:15" discipline="BJJ"></item>
     <item dow="wednesday" time="12:30" discipline="Boxing"></item>
     <item dow="wednesday" time="12:30" discipline="BJJ"></item>
     <item dow="wednesday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
@@ -25,14 +25,14 @@
     <item dow="wednesday" time="20:00" discipline="BJJ"></item>
     <item dow="wednesday" time="20:15" discipline="MMA Mixed"></item>
 
-    <item dow="thursday" time="7:15" discipline="MMA Mixed"></item>
+    <item dow="thursday" time="07:15" discipline="MMA Mixed"></item>
     <item dow="thursday" time="12:30" discipline="BJJ"></item>
     <item dow="thursday" time="18:30" discipline="BJJ Beginners"></item>
     <item dow="thursday" time="18:30" discipline="Muay Thai Advanced / Sparring"></item>
     <item dow="thursday" time="19:30" discipline="MMA Mixed"></item>
     <item dow="thursday" time="20:30" discipline="Wrestling"></item>
 
-    <item dow="friday" time="7:15" discipline="BJJ"></item>
+    <item dow="friday" time="07:15" discipline="BJJ"></item>
     <item dow="friday" time="12:30" discipline="BJJ Open Mat"></item>
     <item dow="friday" time="18:00" discipline="BJJ Beginners"></item>
     <item dow="friday" time="18:15" discipline="Muay Thai Beginners / Intermediate"></item>
