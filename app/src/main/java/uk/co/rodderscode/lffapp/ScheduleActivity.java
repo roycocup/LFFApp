@@ -26,21 +26,28 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         setupSpinner();
         schedule = new ScheduleModel(this);
 
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
+    }
 
-        fillListView(values);
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+
+        String weekDay = weekDays[position];
+        List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
+
+        ListView listView = (ListView) findViewById(R.id.schedule_list_view);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, day);
+        listView.setAdapter(adapter);
 
     }
 
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent){}
 
     void setupSpinner(){
         // weekdays spinner
-        ArrayAdapter<String> a1 = new ArrayAdapter<String>(
+        ArrayAdapter<String> a1 = new ArrayAdapter<>(
                 ScheduleActivity.this,
                 android.R.layout.simple_spinner_item,
                 weekDays);
@@ -52,47 +59,6 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
         weekdaysSpinner.setOnItemSelectedListener(this);
 
     }
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-        TextView txt_schedule = (TextView) findViewById(R.id.txt_schedule);
-        TextView txt_schedule_content = (TextView) findViewById(R.id.txt_schedule_content);
-        String weekDay = weekDays[position];
-        List<String[]> day = schedule.getDayClasses(weekDay.toLowerCase());
-
-
-
-        txt_schedule.append("");
-        txt_schedule_content.setText("");
-
-        txt_schedule.setText("Looking at: " + weekDay + "\n");
-
-        if (day.size() < 1){
-            txt_schedule.append("There are no classes today. \n");
-            txt_schedule_content.setText("");
-            return;
-        }
-
-        for (int i = 0; i < day.size(); i++) {
-            txt_schedule_content.append("Time: " + day.get(i)[0] + " Class: " + day.get(i)[1] + "\n");
-        }
-
-    }
-
-    private void fillListView(String[] values) {
-
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
-        }
-
-        ListView listView = (listView) R.id.schedule_list_view;
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent){}
-
 
 
 }
