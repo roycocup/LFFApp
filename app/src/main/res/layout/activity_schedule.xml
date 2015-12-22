@@ -38,6 +38,9 @@
         android:id="@+id/schedule_list_view"
         android:layout_below="@id/sp_weekday"
         android:layout_marginTop="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
         android:layout_gravity="center_horizontal|bottom" />
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package uk.co.rodderscode.lffapp;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,10 +23,15 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_schedule);
         setupSpinner();
         schedule = new ScheduleModel(this);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
 
