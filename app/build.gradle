@@ -26,4 +26,7 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
+//    compile 'com.squareup.okhttp:okhttp:2.7.1'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
+
 }

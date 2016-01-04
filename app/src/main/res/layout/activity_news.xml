@@ -18,12 +18,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TableRow
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txt_news"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp">
+        android:layout_below="@+id/news_title"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,6 +31,10 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Small Text"
             android:id="@+id/txt_news" />
-    </TableRow>
+
+
+    </LinearLayout>
+
+
 </RelativeLayout>
 
