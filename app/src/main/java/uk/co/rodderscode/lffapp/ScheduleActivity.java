@@ -3,12 +3,10 @@ package uk.co.rodderscode.lffapp;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.*;
 
@@ -52,13 +50,13 @@ public class ScheduleActivity extends ActionBarActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent){}
 
     void setupSpinner(){
-        // weekdays spinner
-        ArrayAdapter<String> a1 = new ArrayAdapter<>(
+        // weekdays schedule_spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 ScheduleActivity.this,
-                android.R.layout.simple_spinner_item,
+                R.layout.schedule_spinner, // This layout will have precedence over the basic definition
                 weekDays);
         weekdaysSpinner = (Spinner) findViewById(R.id.sp_weekday);
-        weekdaysSpinner.setAdapter(a1);
+        weekdaysSpinner.setAdapter(adapter);
         //default the selection to today
         Calendar c = Calendar.getInstance();
         weekdaysSpinner.setSelection(c.get(Calendar.DAY_OF_WEEK) - 2);
