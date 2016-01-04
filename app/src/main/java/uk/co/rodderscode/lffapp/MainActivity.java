@@ -76,13 +76,13 @@ public class MainActivity extends Activity {
 
         Intent addIntent = new Intent();
         addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "London Fight Factory");
         addIntent.putExtra(
                 Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                 Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.mipmap.ic_launcher)
         );
+        addIntent.putExtra("duplicate", false);
 
         getApplicationContext().sendBroadcast(addIntent);
     }

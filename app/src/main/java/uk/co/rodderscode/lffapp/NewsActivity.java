@@ -11,14 +11,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.apache.http.HttpRequest;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.protocol.HTTP;
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+
 
 public class NewsActivity extends ActionBarActivity {
 
@@ -38,10 +37,11 @@ public class NewsActivity extends ActionBarActivity {
     // I decided to move the calls into a 3rd party restful server where I can get the latest xml update
     public void setupNews() {
         newsTxt.setText("There are no news yet");
-        testHtml();
+//        testVolley();
+        testVanilla();
     }
 
-    void testHtml(){
+    void testVolley(){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://www.google.com";
@@ -54,15 +54,45 @@ public class NewsActivity extends ActionBarActivity {
                         // Display the first 500 characters of the response string.
                         newsTxt.setText("Response is: "+ response.substring(0,500));
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                newsTxt.setText("That didn't work!");
-            }
-        });
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        newsTxt.setText("That didn't work!");
+                    }
+                }
+        );
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
 
+
+    void testVanilla(){
+        try {
+            newsTxt.setText("Waiting for google.... ");
+            URL url = new URL("http://www.google.com");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            String readStream = readStream(con.getInputStream());
+            // Give output for the command line
+            newsTxt.setText(readStream.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String readStream(InputStream in) {
+        StringBuilder sb = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+
+            String nextLine = "";
+            while ((nextLine = reader.readLine()) != null) {
+                sb.append(nextLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 }
