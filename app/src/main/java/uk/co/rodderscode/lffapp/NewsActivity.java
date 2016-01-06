@@ -2,6 +2,7 @@ package uk.co.rodderscode.lffapp;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -68,31 +69,49 @@ public class NewsActivity extends ActionBarActivity {
 
 
     void testVanilla(){
-        try {
-            newsTxt.setText("Waiting for google.... ");
-            URL url = new URL("http://www.google.com");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            String readStream = readStream(con.getInputStream());
-            // Give output for the command line
-            newsTxt.setText(readStream.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+            newsTxt.setText("Waiting ... ");
+
+            StringBuilder s = new StringBuilder("");
+
+            // start new thread
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        URL url = new URL("http://rodderscode.co.uk");
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("GET");
+                        connection.setReadTimeout(15 * 1000);
+                        connection.connect();
+
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                        String line;
+                        StringBuilder sb = new StringBuilder("");
+
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line);
+                        }
+
+                        // update the main text on the UIThread
+                        // as we cannot update views from a subthread
+                        final String s = sb.toString();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                newsTxt.setText(s);
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt();
+                        Log.e(MainActivity.TAG, e.toString());
+                    }
+                }
+            }).start();
+
     }
 
-    private static String readStream(InputStream in) {
-        StringBuilder sb = new StringBuilder();
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
-
-            String nextLine = "";
-            while ((nextLine = reader.readLine()) != null) {
-                sb.append(nextLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
 
 }
