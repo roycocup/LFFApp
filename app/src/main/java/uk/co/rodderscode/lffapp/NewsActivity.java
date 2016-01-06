@@ -3,6 +3,7 @@ package uk.co.rodderscode.lffapp;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -16,7 +17,8 @@ import java.net.URL;
 public class NewsActivity extends ActionBarActivity {
 
 
-    TextView newsTxt;
+    private TextView newsTxt;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class NewsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_news);
 
         newsTxt = (TextView) findViewById(R.id.txt_news);
+        progress = (ProgressBar) findViewById(R.id.progressBar_news);
+
         setupNews();
 
     }
@@ -42,6 +46,7 @@ public class NewsActivity extends ActionBarActivity {
             public void run() {
 
                 final String html = fetchWeb();
+
                 // Handler post
                 newsTxt.post(new Runnable() {
                     @Override
@@ -74,6 +79,19 @@ public class NewsActivity extends ActionBarActivity {
 
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
+            }
+
+
+            for (int i = 0; i <= 100; i++) {
+                Thread.sleep(25);
+                final int finalValue = i;
+                Log.d(MainActivity.TAG, String.valueOf(i));
+                progress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progress.setProgress(finalValue);
+                    }
+                });
             }
 
             finalS = sb.toString();
