@@ -85,7 +85,6 @@ public class NewsActivity extends ActionBarActivity {
             for (int i = 0; i <= 100; i++) {
                 Thread.sleep(25);
                 final int finalValue = i;
-                Log.d(MainActivity.TAG, String.valueOf(i));
                 progress.post(new Runnable() {
                     @Override
                     public void run() {

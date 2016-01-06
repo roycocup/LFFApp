@@ -3,20 +3,41 @@ package uk.co.rodderscode.lffapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
-import java.util.Arrays;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.tweetui.CollectionTimeline;
+import com.twitter.sdk.android.tweetui.SearchTimeline;
+import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
+import com.twitter.sdk.android.tweetui.UserTimeline;
+
+import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends Activity {
+
+    // TODO: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = " 1TSWX9xQ6fkzCivMeqcklJvL2";
+    private static final String TWITTER_SECRET = "Gnqh9CTW0s8K8ZGTBWS9jwEPvBIWUKizblLhgUlARDByqMG6P0";
+
 
     public static final String TAG = "Rodderscode";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
+
+        final UserTimeline userTimeline = new UserTimeline.Builder().screenName("lff4ever").build();
+        final TweetTimelineListAdapter twitterAdapter = new TweetTimelineListAdapter.Builder(this).setTimeline(userTimeline).build();
+
+
 
         setContentView(R.layout.activity_main);
 
