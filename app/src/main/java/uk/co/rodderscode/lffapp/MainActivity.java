@@ -2,6 +2,7 @@ package uk.co.rodderscode.lffapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +37,6 @@ public class MainActivity extends Activity {
 
         final UserTimeline userTimeline = new UserTimeline.Builder().screenName("lff4ever").build();
         final TweetTimelineListAdapter twitterAdapter = new TweetTimelineListAdapter.Builder(this).setTimeline(userTimeline).build();
-
-
 
         setContentView(R.layout.activity_main);
 
@@ -92,6 +91,10 @@ public class MainActivity extends Activity {
     }
 
     private void addShortcut() {
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        boolean shortCutWasAlreadyAdded = sharedPreferences.getBoolean("PREF_KEY_SHORTCUT_ADDED", false);
+        if (shortCutWasAlreadyAdded) return;
+
         Intent shortcutIntent = new Intent(getApplicationContext(), MainActivity.class);
         shortcutIntent.setAction(Intent.ACTION_MAIN);
 
@@ -104,7 +107,11 @@ public class MainActivity extends Activity {
                 Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.mipmap.ic_launcher)
         );
         addIntent.putExtra("duplicate", false);
-
         getApplicationContext().sendBroadcast(addIntent);
+
+        // Remembering that ShortCut was already added
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("PREF_KEY_SHORTCUT_ADDED", true);
+        editor.commit();
     }
 }
