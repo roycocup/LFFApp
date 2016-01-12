@@ -1,8 +1,10 @@
 package uk.co.rodderscode.lffapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,12 +15,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
 public class NewsActivity extends ActionBarActivity {
 
-
     private TextView newsTxt;
+    private ListView listView;
     private ProgressBar progress;
+    private String twitterApiUrl = "http://v2.lffcup.co.uk/twitterTimeline";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +30,11 @@ public class NewsActivity extends ActionBarActivity {
 
         newsTxt = (TextView) findViewById(R.id.txt_news);
         progress = (ProgressBar) findViewById(R.id.progressBar_news);
+        listView = (ListView) findViewById(R.id.listview_news);
 
         setupNews();
-
     }
+
 
     public void setupNews() {
         newsTxt.setText("There are no news yet");
@@ -38,15 +42,12 @@ public class NewsActivity extends ActionBarActivity {
     }
 
 
-    void updateNewsField(){
+    void updateNewsField() {
         newsTxt.setText("Waiting ... ");
-
         Runnable r = new Runnable() {
             @Override
             public void run() {
-
                 final String html = fetchWeb();
-
                 // Handler post
                 newsTxt.post(new Runnable() {
                     @Override
@@ -54,19 +55,17 @@ public class NewsActivity extends ActionBarActivity {
                         newsTxt.setText(html);
                     }
                 });
-
             }
         };
 
         new Thread(r).start();
-
     }
 
 
-    String fetchWeb(){
+    String fetchWeb() {
         String finalS = null;
         try {
-            URL url = new URL("http://rodderscode.co.uk"); // :)
+            URL url = new URL(twitterApiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setReadTimeout(15 * 1000);
@@ -105,5 +104,14 @@ public class NewsActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 
 }

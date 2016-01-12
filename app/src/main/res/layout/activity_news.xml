@@ -39,6 +39,13 @@
             android:text="Small Text"
             android:id="@+id/txt_news" />
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview_news" />
+
+
+
 
     </LinearLayout>
 
