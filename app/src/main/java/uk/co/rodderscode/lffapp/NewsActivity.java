@@ -3,16 +3,23 @@ package uk.co.rodderscode.lffapp;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.JsonReader;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class NewsActivity extends ActionBarActivity {
@@ -37,31 +44,38 @@ public class NewsActivity extends ActionBarActivity {
 
 
     public void setupNews() {
-        newsTxt.setText("There are no news yet");
+        // TODO: Show cached file
+        newsTxt.setText("Please wait...");
         updateNewsField();
     }
 
 
-    void updateNewsField() {
-        newsTxt.setText("Waiting ... ");
+    private void updateNewsField() {
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                final String html = fetchWeb();
-                // Handler post
-                newsTxt.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        newsTxt.setText(html);
+                final String rawData = fetchWeb();
+                JSONArray json;
+
+                try {
+                    json = new JSONArray(rawData);
+
+                    for(int i = 0; i < json.length(); i++){
+                        JSONObject o = new JSONObject((String) json.get(i));
+                        Log.d(MainActivity.TAG, o.toString());
                     }
-                });
+                } catch (JSONException e) {
+                    Log.e(MainActivity.TAG, e.getMessage());
+                }
+
             }
         };
         new Thread(r).start();
     }
 
 
-    String fetchWeb() {
+    private String fetchWeb() {
 
         String finalS = null;
         try {
@@ -80,8 +94,9 @@ public class NewsActivity extends ActionBarActivity {
                 sb.append(line);
             }
 
+            // Making a fake counter with the progress bar
+            // TODO: make progress bar disappear when results arrive and thread dies.
             for (int i = 0; i <= 100; i++) {
-                Thread.sleep(25);
                 final int finalValue = i;
                 progress.post(new Runnable() {
                     @Override
@@ -89,6 +104,7 @@ public class NewsActivity extends ActionBarActivity {
                         progress.setProgress(finalValue);
                     }
                 });
+
             }
 
             finalS = sb.toString();
