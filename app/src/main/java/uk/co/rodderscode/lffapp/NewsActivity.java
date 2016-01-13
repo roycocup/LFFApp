@@ -57,12 +57,12 @@ public class NewsActivity extends ActionBarActivity {
                 });
             }
         };
-
         new Thread(r).start();
     }
 
 
     String fetchWeb() {
+
         String finalS = null;
         try {
             URL url = new URL(twitterApiUrl);
@@ -80,7 +80,6 @@ public class NewsActivity extends ActionBarActivity {
                 sb.append(line);
             }
 
-
             for (int i = 0; i <= 100; i++) {
                 Thread.sleep(25);
                 final int finalValue = i;
@@ -94,24 +93,12 @@ public class NewsActivity extends ActionBarActivity {
 
             finalS = sb.toString();
 
-
         } catch (Exception e) {
             Thread.currentThread().interrupt();
             Log.e(MainActivity.TAG, e.toString());
         }
 
         return finalS;
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
 }
