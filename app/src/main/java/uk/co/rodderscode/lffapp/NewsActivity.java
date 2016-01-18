@@ -1,24 +1,36 @@
 package uk.co.rodderscode.lffapp;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.JsonReader;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.json.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -47,33 +59,58 @@ public class NewsActivity extends ActionBarActivity {
         // TODO: Show cached file
         newsTxt.setText("Please wait...");
         updateNewsField();
+
     }
 
 
     private void updateNewsField() {
-
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 final String rawData = fetchWeb();
+                // save it
+                mkCache(rawData);
                 JSONArray json;
+                HashMap values = new HashMap();
+                ArrayList list = new ArrayList();
 
                 try {
                     json = new JSONArray(rawData);
-
                     for(int i = 0; i < json.length(); i++){
-                        JSONObject o = new JSONObject((String) json.get(i));
-                        Log.d(MainActivity.TAG, o.toString());
+                        list.add(json.get(i).toString());
                     }
                 } catch (JSONException e) {
                     Log.e(MainActivity.TAG, e.getMessage());
                 }
+
+                final ListAdapter listAdapter = new NewsAdapter(getApplicationContext(), -1, list);
+                listView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        listView.setAdapter(listAdapter);
+                    }
+                });
 
             }
         };
         new Thread(r).start();
     }
 
+    private boolean mkCache(String rawData) {
+        String filename = "cacheFile.txt";
+        if (new File(filename).exists()) {
+            Log.d(MainActivity.TAG, "File already exists");
+        }
+        FileOutputStream outputStream;
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(rawData.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     private String fetchWeb() {
 
@@ -116,5 +153,8 @@ public class NewsActivity extends ActionBarActivity {
 
         return finalS;
     }
+
+
+
 
 }

@@ -3,6 +3,7 @@ package uk.co.rodderscode.lffapp;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class NewsAdapter extends ArrayAdapter<String> {
         TextView text = (TextView) rowView.findViewById(R.id.news_row_text);
         ImageView image = (ImageView) rowView.findViewById(R.id.news_row_image);
 
-        text.setText(values.get(position)[0]);
+//        text.setText(values.get(position)[0] );
 //        image.setImageResource(R.drawable.);
 
         return rowView;
