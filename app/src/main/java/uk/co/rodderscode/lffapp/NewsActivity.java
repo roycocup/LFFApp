@@ -1,37 +1,35 @@
 package uk.co.rodderscode.lffapp;
 
 import android.content.Context;
-import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.JsonReader;
+
 import android.util.Log;
-import android.widget.ArrayAdapter;
+
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.json.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.io.BufferedReader;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 
 public class NewsActivity extends ActionBarActivity {
@@ -56,12 +54,22 @@ public class NewsActivity extends ActionBarActivity {
 
 
     public void setupNews() {
-        // TODO: Show cached file
         newsTxt.setText("Please wait...");
-        updateNewsField();
+
+        if (isNetworkAvailable())
+            updateNewsField();
+        else
+            newsTxt.setText("No internet connection."); // TODO: Show cached file
+
 
     }
 
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     private void updateNewsField() {
         Runnable r = new Runnable() {
@@ -71,7 +79,6 @@ public class NewsActivity extends ActionBarActivity {
                 // save it
                 mkCache(rawData);
                 JSONArray json;
-                HashMap values = new HashMap();
                 ArrayList list = new ArrayList();
 
                 try {
