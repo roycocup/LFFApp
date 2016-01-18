@@ -88,6 +88,7 @@ public class NewsActivity extends ActionBarActivity {
                     @Override
                     public void run() {
                         listView.setAdapter(listAdapter);
+                        newsTxt.setText("");
                     }
                 });
 

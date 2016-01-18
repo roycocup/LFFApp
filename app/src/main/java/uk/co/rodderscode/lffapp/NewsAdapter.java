@@ -45,7 +45,6 @@ public class NewsAdapter extends ArrayAdapter<String> {
         TextView text = (TextView) rowView.findViewById(R.id.news_row_text);
         ImageView image = (ImageView) rowView.findViewById(R.id.news_row_image);
 
-//        Log.d( MainActivity.TAG, String.valueOf(values.get(position)));
 
         try {
             JSONObject json = new JSONObject(String.valueOf(values.get(position)));
