@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 
@@ -36,12 +40,20 @@ public class NewsAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.schedule_row, parent, false);
+        View rowView = inflater.inflate(R.layout.news_row, parent, false);
 
         TextView text = (TextView) rowView.findViewById(R.id.news_row_text);
         ImageView image = (ImageView) rowView.findViewById(R.id.news_row_image);
 
-//        text.setText(values.get(position)[0] );
+//        Log.d( MainActivity.TAG, String.valueOf(values.get(position)));
+
+        try {
+            JSONObject json = new JSONObject(String.valueOf(values.get(position)));
+            text.setText(json.getString("text"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 //        image.setImageResource(R.drawable.);
 
         return rowView;
